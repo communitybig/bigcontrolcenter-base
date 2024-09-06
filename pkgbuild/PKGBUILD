@@ -2,8 +2,7 @@
 
 pkgname=bigcontrolcenter-base
 pkgdesc="Base files and libs to bigcontrolcenter interfaces"
-#depends=('')
-optdepends=(
+depends=(
 	'jq'
 	'pamac-gtk'
 	'paru'
@@ -28,6 +27,7 @@ optdepends=(
 	'xtermset'
 )
 # Uncomment and edit the following lines as needed
+#optdepends=('')
 #makedepends=('')
 #conflicts=('')
 #provides=('')
