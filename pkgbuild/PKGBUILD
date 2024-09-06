@@ -1,9 +1,40 @@
-# Maintainer: Tales A. Mendonça <talesam@gmail.com>
+# Maintainer: Vilmar Catafesta <vcatafesta@gmail.com>
 
-pkgname=pkgbuild-template
-pkgdesc="Package template for Communitybig"
+pkgname=bigcontrolcenter-base
+pkgdesc="Base files and libs to bigcontrolcenter interfaces"
+depends=('bash'
+	'curl'
+	'coreutils'  # cat, cut, mkdir,rmdir, rm, sort, uniq, ... etc
+	'util-linux' # rev
+	'gawk'
+	'grep'
+	'jq'
+	'pamac-gtk'
+	'paru'
+	'polkit'
+	'parallel'
+	'rxvt-unicode'
+	'sed'
+	'xorg-xwininfo'
+	'xorg-xrandr'
+	'xorg-xprop' # xprop
+	'wmctrl'     # wmctrl
+	'yay'
+	'yad'
+	'libnotify' # notify-send
+	'kdialog'
+	'lsof'
+	'libnewt'   # whiptail
+	'procps-ng' # pipof, pgrep
+	'pacman'
+	'pacman-mirrors'
+	'pigz'  		# ter 18 jun 2024 16:37:50 -04
+	'rsync' 		# ter 18 jun 2024 16:37:50 -04
+	'mhwd'
+	'xsetprop'
+	'xtermset'
+)
 # Uncomment and edit the following lines as needed
-#depends=('')
 #makedepends=('')
 #optdepends=('')
 #conflicts=('')
@@ -19,54 +50,54 @@ md5sums=('SKIP')
 
 # Automatically detect and use the correct install file
 if [ -e "${pkgname}.install" ]; then
-    install=${pkgname}.install
+	install=${pkgname}.install
 elif [ -e "pkgbuild.install" ]; then
-    install=pkgbuild.install
+	install=pkgbuild.install
 fi
 
 prepare() {
-    cd "${srcdir}/${pkgname}"
-    # Add any preparation steps here, if needed
-    # For example: patch -p1 < "${srcdir}/patch-file.patch"
+	cd "${srcdir}/${pkgname}"
+	# Add any preparation steps here, if needed
+	# For example: patch -p1 < "${srcdir}/patch-file.patch"
 }
 
 build() {
-    cd "${srcdir}/${pkgname}"
-    # Add build steps here, if needed
-    # For example: make
+	cd "${srcdir}/${pkgname}"
+	# Add build steps here, if needed
+	# For example: make
 }
 
 check() {
-    cd "${srcdir}/${pkgname}"
-    # Add check/test steps here, if needed
-    # For example: make check
+	cd "${srcdir}/${pkgname}"
+	# Add check/test steps here, if needed
+	# For example: make check
 }
 
 package() {
-    cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/${pkgname}"
 
-    # Determine the correct source directory
-    if [ -d "${pkgname}" ]; then
-        srcdir="${srcdir}/${pkgname}/${pkgname}"
-    else
-        srcdir="${srcdir}/${pkgname}"
-    fi
+	# Determine the correct source directory
+	if [ -d "${pkgname}" ]; then
+		srcdir="${srcdir}/${pkgname}/${pkgname}"
+	else
+		srcdir="${srcdir}/${pkgname}"
+	fi
 
-    # Install files
-    local dirs=("usr" "etc" "opt")
-    for dir in "${dirs[@]}"; do
-        if [ -d "${srcdir}/${dir}" ]; then
-            cp -a "${srcdir}/${dir}" "${pkgdir}/"
-        fi
-    done
+	# Install files
+	local dirs=("usr" "etc" "opt")
+	for dir in "${dirs[@]}"; do
+		if [ -d "${srcdir}/${dir}" ]; then
+			cp -a "${srcdir}/${dir}" "${pkgdir}/"
+		fi
+	done
 
-    # Install license file if present
-    if [ -f "LICENSE" ]; then
-        install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
-    fi
+	# Install license file if present
+	if [ -f "LICENSE" ]; then
+		install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+	fi
 
-    # Install documentation if present
-    if [ -f "README.md" ]; then
-        install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
-    fi
+	# Install documentation if present
+	if [ -f "README.md" ]; then
+		install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
+	fi
 }
