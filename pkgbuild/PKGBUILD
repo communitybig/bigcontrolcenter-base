@@ -2,19 +2,14 @@
 
 pkgname=bigcontrolcenter-base
 pkgdesc="Base files and libs to bigcontrolcenter interfaces"
-depends=('bash'
-	'curl'
-	'coreutils'  # cat, cut, mkdir,rmdir, rm, sort, uniq, ... etc
-	'util-linux' # rev
-	'gawk'
-	'grep'
+#depends=('')
+optdepends=(
 	'jq'
 	'pamac-gtk'
 	'paru'
 	'polkit'
 	'parallel'
 	'rxvt-unicode'
-	'sed'
 	'xorg-xwininfo'
 	'xorg-xrandr'
 	'xorg-xprop' # xprop
@@ -26,8 +21,6 @@ depends=('bash'
 	'lsof'
 	'libnewt'   # whiptail
 	'procps-ng' # pipof, pgrep
-	'pacman'
-	'pacman-mirrors'
 	'pigz'  		# ter 18 jun 2024 16:37:50 -04
 	'rsync' 		# ter 18 jun 2024 16:37:50 -04
 	'mhwd'
@@ -36,7 +29,6 @@ depends=('bash'
 )
 # Uncomment and edit the following lines as needed
 #makedepends=('')
-#optdepends=('')
 #conflicts=('')
 #provides=('')
 #replaces=('')
