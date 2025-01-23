@@ -1,6 +1,5 @@
 /*
   big-search-aur - Command-line AUR helper
-		https://go.dev/play/p/EfimATJvYfP
     go get github.com/go-ini/ini
     Chili GNU/Linux - https://github.com/vcatafesta/chili/go
     Chili GNU/Linux - https://chililinux.com
@@ -323,7 +322,7 @@ func runSearchPackages() {
 	}
 
 	if outputFormat == "" {
-		//		outputFormat = "--json" // Define o formato padrão como json
+//		outputFormat = "--json" // Define o formato padrão como json
 		outputFormat = "--table" // Define o formato padrão como json
 	}
 
@@ -349,7 +348,7 @@ func runSearchPackages() {
 				pkg.Name + separator +
 				Green + pkg.Version + Reset + separator +
 				Yellow + "[+" + strconv.Itoa(pkg.NumVotes) + separator +
-				"~" + strconv.FormatFloat(pkg.Popularity, 'f', -1, 64) + "]" + Reset)
+				"~"  + strconv.FormatFloat(pkg.Popularity, 'f', -1, 64) + "]" + Reset)
 
 			echo("    " + pkg.Description)
 		}
