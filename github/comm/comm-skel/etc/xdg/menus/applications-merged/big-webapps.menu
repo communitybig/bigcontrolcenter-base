@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+  "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+
+<Menu>
+    <Name>Webapps</Name>
+    <Menu>
+       <Name>Webapps</Name>
+        <Directory>web-apps.directory</Directory>
+        <Layout>
+            <Merge type="menus" />
+            <Merge type="files" />
+            <Menuname>Webapps</Menuname>
+        </Layout>
+        <Include>
+            <Category>Webapps</Category>
+        </Include>
+    </Menu>
+</Menu>

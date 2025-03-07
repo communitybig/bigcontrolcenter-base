@@ -1,0 +1,10 @@
+[Trigger]
+Type      = Package
+Operation = Install
+Operation = Upgrade
+Target    = comm-skel
+
+[Action]
+Description = BigCommunity change Biglinux desktop files
+When = PostTransaction
+Exec = /usr/share/libalpm/scripts/big-update-bigapps-category-in-desktopfiles

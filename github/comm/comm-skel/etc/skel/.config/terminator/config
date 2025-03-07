@@ -1,0 +1,36 @@
+[global_config]                                                                                                                                                                               
+  sticky = True
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+[keybindings]
+  go_up = <Primary>Up
+  go_down = <Primary>Down
+  go_left = <Primary>Left
+  go_right = <Primary>Right
+  split_horiz = <Primary>h
+  split_vert = <Primary>s
+  close_term = <Primary><Shift>BackSpace
+  close_window = <Primary><Shift>q
+  hide_window = F12
+  next_tab = <Primary>Tab
+  prev_tab = <Primary><Shift>Tab
+  paste = <Shift>Insert
+[profiles]
+  [[default]]
+    background_darkness = 0.9
+    background_type = transparent
+    background_image = None
+    font = Noto Mono Nerd Font Medium 12
+    show_titlebar = False
+    palette = "#2e3d51:#b9362b:#3bb15a:#ec9f14:#3e7dbb:#8d35b0:#34a284:#bec3c7:#2c3b4d:#df483c:#36a252:#ebc80a:#4b92db:#964ab6:#3ebe99:#ecf0f1"
+    use_system_font = False
+    use_theme_colors = True
+    copy_on_selection = True
+[layouts]
+  [[default]]
+    [[[child0]]]
+      order = 0
+      parent = ""
+      position = 0:24
+      size = 1300, 400
+      type = Window
+[plugins]
