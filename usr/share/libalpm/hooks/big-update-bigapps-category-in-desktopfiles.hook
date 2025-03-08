@@ -2,9 +2,9 @@
 Type      = Package
 Operation = Install
 Operation = Upgrade
-Target    = comm-skel
+Target    = bigcontrolcenter-base
 
 [Action]
-Description = BigCommunity change Biglinux desktop files
+Description = BigCommunity change Big desktop files
 When = PostTransaction
 Exec = /usr/share/libalpm/scripts/big-update-bigapps-category-in-desktopfiles
