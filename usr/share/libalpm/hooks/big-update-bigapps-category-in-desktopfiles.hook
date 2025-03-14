@@ -9,8 +9,9 @@ Target    = biglinux-driver-manager
 Target    = biglinux-webapps
 Target    = comm-webapps
 Target    = comm-restore-config
-Target    = iso2usb
 Target    = calamares-biglinux
+Target    = iso2usb
+Target    = chili-clonedisk
 
 [Action]
 Description = BigCommunity change Big desktop files
