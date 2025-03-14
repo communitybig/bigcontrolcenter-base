@@ -22,19 +22,19 @@ optdepends=('curl'
 	'sed'
 	'xorg-xwininfo'
 	'xorg-xrandr'
-	'xorg-xprop' 	# xprop
-	'wmctrl'     	# wmctrl
+	'xorg-xprop' # xprop
+	'wmctrl'     # wmctrl
 	'yay'
 	'yad'
-	'libnotify' 	# notify-send
+	'libnotify' # notify-send
 	'kdialog'
 	'lsof'
-	'libnewt'   	# whiptail
-	'procps-ng' 	# pipof, pgrep
+	'libnewt'   # whiptail
+	'procps-ng' # pipof, pgrep
 	'pacman'
 	'pacman-mirrors'
-	'pigz'			# ter 18 jun 2024 16:37:50 -04
-	'rsync'			# ter 18 jun 2024 16:37:50 -04
+	'pigz'  # ter 18 jun 2024 16:37:50 -04
+	'rsync' # ter 18 jun 2024 16:37:50 -04
 )
 depends_x86_64=('mhwd' 'xsetprop' 'xtermset')
 source=("git+${url}.git")
@@ -65,4 +65,10 @@ package() {
 	if [ -d "${InternalDir}/opt" ]; then
 		cp -r "${InternalDir}/opt" "${pkgdir}/"
 	fi
+
+	# seg 18 nov 2024 00:29:09 -04
+	# Add link to bin path
+	mkdir -p "${pkgdir}/usr/bin"
+	ln -sf "/usr/share/libalpm/scripts/big-update-bigapps-category-in-desktopfiles" "${pkgdir}/usr/bin/big-update-bigapps-category-in-desktopfiles"
+
 }

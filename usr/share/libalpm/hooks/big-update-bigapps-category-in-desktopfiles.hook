@@ -1,0 +1,18 @@
+[Trigger]
+Type      = Package
+Operation = Install
+Operation = Upgrade
+Target    = bigcontrolcenter
+Target    = bigcontrolcenter-base
+Target    = big-store
+Target    = biglinux-driver-manager
+Target    = biglinux-webapps
+Target    = comm-webapps
+Target    = comm-restore-config
+Target    = iso2usb
+Target    = calamares-biglinux
+
+[Action]
+Description = BigCommunity change Big desktop files
+When        = PostTransaction
+Exec        = /usr/share/libalpm/scripts/big-update-bigapps-category-in-desktopfiles
