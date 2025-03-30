@@ -31,7 +31,7 @@ export reset="\033[0m"
 declare IS_UPGRADE=false
 declare DM='lightdm'
 declare WM='bigcontrolcenter-base'
-declare pkgname=comm-"${WM}"
+declare pkgname="${WM}"
 declare servicesToEnable=()
 declare servicesToDisable=()
 
