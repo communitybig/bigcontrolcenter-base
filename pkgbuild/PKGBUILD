@@ -5,40 +5,44 @@ pkgdesc="Base files and libs to bigcontrolcenter interfaces"
 pkgver=$(date +%Y%m%d)
 pkgrel=$(date +%H%M)
 arch=('any')
-license=('GPL3')
+license=('MIT')
 url="https://github.com/communitybig/$pkgname"
 source=("git+${url}.git")
-provides=("$pkgname")
-depends=('bash')
-optdepends=('curl'
-	'gawk'
-	'grep'
-	'jq'
-	'pamac-gtk'
-	'paru'
-	'polkit'
-	'parallel'
-	'rxvt-unicode'
-	'sed'
-	'xorg-xwininfo'
-	'xorg-xrandr'
-	'xorg-xprop' # xprop
-	'wmctrl'     # wmctrl
-	'yay'
-	'yad'
-	'libnotify' # notify-send
-	'kdialog'
-	'lsof'
-	'libnewt'   # whiptail
-	'procps-ng' # pipof, pgrep
-	'pacman'
-	'pacman-mirrors'
-	'pigz'  # ter 18 jun 2024 16:37:50 -04
-	'rsync' # ter 18 jun 2024 16:37:50 -04
-)
-depends_x86_64=('mhwd' 'xsetprop' 'xtermset')
-source=("git+${url}.git")
 md5sums=('SKIP')
+depends=()
+optdepends=(
+	bash
+	curl
+	gawk
+	grep
+	sed
+	jq
+	pamac-gtk
+	paru
+	polkit
+	parallel
+	dialog
+	pv
+	yay
+	yad
+	xorg-xwininfo
+	xorg-xrandr
+	xorg-xprop # xprop
+	wmctrl     # wmctrl
+	libnotify # notify-send
+	rxvt-unicode
+	kdialog
+	lsof
+	libnewt       # whiptail
+	procps-ng     # pipof, pgrep
+	pacman
+	pigz          # ter 18 jun 2024 16:37:50 -04
+	rsync         # ter 18 jun 2024 16:37:50 -04
+	mhwd
+	xsetprop
+	xtermset
+)
+
 if [ -e "${pkgname}.install" ]; then
 	install=${pkgname}.install
 elif [ -e "pkgbuild.install" ]; then
@@ -46,29 +50,31 @@ elif [ -e "pkgbuild.install" ]; then
 fi
 
 package() {
-	# Verify default folder
-	if [ -d "${srcdir}/${pkgname}/${pkgname}" ]; then
-		InternalDir="${srcdir}/${pkgname}/${pkgname}"
-	else
-		InternalDir="${srcdir}/${pkgname}"
+	cd "${srcdir}/${pkgname}"
+
+	# mkdir -p "${pkgdir}/usr/share/${pkgname}"
+	install -dm755 "${pkgdir}/usr/share/${pkgname}"
+	printf "%s\n" "${optdepends[@]}" >"${pkgdir}/usr/share/${pkgname}/optdepends"
+
+	# Copiar a estrutura de /etc, /usr e /opt para /usr/share/${pkgname}
+	local dirs=("usr" "etc" "opt")
+	for dir in "${dirs[@]}"; do
+		if [ -d "${srcdir}/${pkgname}/${dir}" ]; then
+			cp -a "${srcdir}/${pkgname}/${dir}" "${pkgdir}/usr/share/${pkgname}/"
+		fi
+	done
+
+	# Install license file if present
+	if [ -f "LICENSE" ]; then
+		install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 	fi
 
-	# Copy files
-	if [ -d "${InternalDir}/usr" ]; then
-		cp -r "${InternalDir}/usr" "${pkgdir}/"
+	# Install documentation if present
+	if [ -f "README.md" ]; then
+		install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
 	fi
 
-	if [ -d "${InternalDir}/etc" ]; then
-		cp -r "${InternalDir}/etc" "${pkgdir}/"
-	fi
-
-	if [ -d "${InternalDir}/opt" ]; then
-		cp -r "${InternalDir}/opt" "${pkgdir}/"
-	fi
-
-	# seg 18 nov 2024 00:29:09 -04
 	# Add link to bin path
 	mkdir -p "${pkgdir}/usr/bin"
 	ln -sf "/usr/share/libalpm/scripts/big-update-bigapps-category-in-desktopfiles" "${pkgdir}/usr/bin/big-update-bigapps-category-in-desktopfiles"
-
 }
